@@ -1,0 +1,48 @@
+/**
+* A switch, build of a series of icons. The series may be a .png-iconseries (NAME_00.png, NAME_10.png, NAME_20.png...) or may be a dynamic svg-icon (icon.NAME)
+*
+* @param unique id for this widget
+* @param a item for the switch (optional)
+* @param a item for the value
+* @param the iconseries or dynamic icon for the 'on' state
+* @param the icon for the 'off' state (optional)
+* @param the minimum value if it is off (optional, for future use)
+* @param the maximum value if it is on (optional, default 255)
+*
+* @see design/design_icons#Dynamic Icons and Static Icons
+*/
+{% macro shifter(id, item_switch, item_value, pic_on, pic_off, min, max) %}
+
+	{% import "icon.html" as icon %}
+	{% if pic_on|slice(0, 5) == 'icon.' %}
+		{{ attribute(icon, pic_on|slice(5), [id, item_switch, item_value, min, max]) }}
+	{% else %}
+		<span id="{{ uid(page, id) }}" data-widget="basic.shifter" data-item="{{ item_value }}, {{ item_switch }}"
+			{% set pic_on = pic_on|default(icon1~'light_light_dim_00.svg') %}
+			data-pic-on="{{ pic_on }}" data-pic-off="{{ pic_off |default(icon0~pic_on|slice(icon1|length)) }}"
+			data-min="{{ min|default('0') }}" data-max="{{ max|default('255') }}"
+			class="switch"><a><img class="icon" src="{{ pic_off|default(icon0~'light_light_dim_00.svg') }}" /></a>
+    	</span>
+	{% endif %}
+
+{% endmacro %}
+
+/**
+* my slider
+*
+* @param unique id for this widget
+* @param name of the slider
+* @param a gad/item for sliding
+* @param the minimum value if the slider is moved to total left (optional, default 0)
+* @param the maximum value if the slider is moved to total right (optional, default 255)
+* @param step between two values (optional, default 5)
+*/
+{% macro myslider(id, txt, gad_value, min, max, step) %}
+    {% import "basic.html" as basic %}
+    
+    <div class="dimmer">
+        <p align = "left">{{ txt|e }}</p>
+        {{ basic.slider(id~'slider', gad_value, min, max, step) }}
+    </div>
+
+{% endmacro %}

@@ -1,0 +1,144 @@
+/** * ----------------------------------------------------------------------------- * @package     smartVISU * @author      Martin Gleiß * @copyright   2012 * @license     GPL [http://www.gnu.de] * ----------------------------------------------------------------------------- * 		{{basic.switch('S1','Erdgeschoss.Essen.Sofa1.Schalten', icon1~'light_ceiling_light.svg', icon0~'light_ceiling_light.svg')}} Sofa Beleuchtung */ 
+{% extends "base.html" %} 
+{% block sidebar %} 	
+{%include 'rooms_menu.html' %} 
+{% endblock %} 
+{% block content %} 
+
+{% import "Widgets/shifter.html" as shifter %}
+{% import "Widgets/ext.html" as ext %}
+{% import "Widgets/uzsu.html" as uzsu %}
+                    
+
+<h1>
+  <img class="icon"' src='{{ icon0 }}scene_dinner.svg'/>Kochen und Essen</h1>  
+<table width=100%>	
+  <tr>  
+    <td align=middle>Scenen     
+      <span data-role="controlgroup" data-type="horizontal">       
+      {{ basic.button('EG.Essen.Szene_Party_schalten', 'EG.Wohnen.Szene_Party_schalten', '', 'icons/ws/scene_party.svg', '1', 'mini') }}     
+      {{ basic.button('EG.Essen.Szene_Essen_schalten', 'EG.Wohnen.Szene_Essen_schalten', '', 'icons/ws/scene_dinner.svg', '1','mini') }}     
+
+      </span>  </td>  
+  </tr>	
+</table>
+<div class="block">
+  <div class=""set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">	<h3>Beleuchtung</h3>  
+      <table width=100%>	
+<!--        <tr>  
+          <td align=left>		{{ device.dimmer('EG.Essen.Tresen','Kamin Beleuchtung', 'EG.Essen.Tresen.Schalten', 'EG.Essen.Tresen.Dimmen')}} 	</td>  
+        </tr>  
+        <tr>	
+          <td align=left>		{{ device.dimmer('EG.Essen.Esstisch','Esstisch Beleuchtung', 'EG.Essen.Esstisch.Schalten', 'EG.Essen.Esstisch.Dimmen')}} 	</td>  
+        </tr>  
+-->
+	<tr>
+	  <td align=left width = 5%>		
+	    {{ shifter.shifter('EG.Essen.Tresen', 'EG.Essen.Tresen.Schalten', 'EG.Essen.Tresen.Dimmen')}}
+	  </td>  
+          <td>		
+	    {{ shifter.myslider('EG.Essen.Tresen.slider', 'Kamin Beleuchtung', 'EG.Essen.Tresen.Dimmen', 0, 100, 5)}}
+	  </td>  
+	</tr>
+	
+	<tr>
+	  <td align=left width = 5%>		
+	    {{ shifter.shifter('EG.Essen.Esstisch', 'EG.Essen.Esstisch.Schalten', 'EG.Essen.Esstisch.Dimmen')}}
+	  </td>  
+          <td>		
+	    {{ shifter.myslider('EG.Essen.Esstisch.slider', 'Esstisch Beleuchtung', 'EG.Essen.Esstisch.Dimmen', 0, 100, 5)}}
+	  </td>  
+	</tr>
+      </table>
+      <table width=100%>		
+	<tr>	
+          <td align=left> 		{{basic.switch('S1','EG.Essen.Spuele.Schalten', icon1~'light_ceiling_light.svg', icon0~'light_ceiling_light.svg')}} Beleuchtung Sp&uuml;le 	</td>  
+        </tr>  
+        <tr>	
+          <td align=left> 		{{basic.switch('S4','EG.Essen.Kueche.Schalten', icon1~'light_ceiling_light.svg', icon0~'light_ceiling_light.svg')}} Beleuchtung K&uuml;che 	</td>  
+        </tr>  
+        <tr>	
+          <td align=left> 		{{basic.switch('S2','EG.Essen.Kamin.Schalten', icon1~'light_ceiling_light.svg', icon0~'light_ceiling_light.svg')}} Beleuchtung Kamin 	</td>  
+        </tr>  
+        <tr>	
+          <td align=left> 		{{basic.switch('S3','EG.Essen.Durchgang.Schalten', icon1~'light_ceiling_light.svg', icon0~'light_ceiling_light.svg')}} Beleuchtung Durchgang 	</td>  
+        </tr>	
+      </table>
+    </div>
+  </div>
+</div>
+<div class="block">
+  <div class=""set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">	<h3>Heizung, heizt mit {{basic.float('EG.Essen.Heizung.stellwert', 'EG.Essen.Heizung.stellwert', '%')}}</h3>  
+      <table width=100%>	
+        <tr>  
+          <td align=left>            
+
+
+          {{ ext.rtr('EG.Essen.Heizung1', 'EG.Essen.Heizung.ist', 'EG.Essen.Heizung.soll', 'EG.Essen.Heizung.sollwertverschiebung', 'EG.Essen.Heizung.modus', 'EG.Essen.Heizung.stellwert', 'EG.Essen.Heizung.uzsu', 0.5) }}
+
+<!--          {{ device.rtr('EG.Essen.Heizung', 'Heizung Kochen', 'EG.Essen.Heizung.ist', 'EG.Essen.Heizung.soll', 'EG.Essen.Heizung.modus', 'EG.Essen.Heizung.modus', 'EG.Essen.Heizung.modus', 'EG.Essen.Heizung.status') }} </td>
+-->
+	</tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="block">
+  <div class=""set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">	<h3>Fenster & Klappl&auml;den</h3>  
+      <table width=100%>	
+        <tr>  
+          <td align=left>
+            <span data-role="controlgroup" data-type="horizontal">  
+            {{ basic.button('EG.Essen.Laden1.Bewegen.Auf', 'EG.Essen.Laden1.Bewegen', 'Auf', 'forward', '0', 'mini') }} 
+            {{ basic.button('EG.Essen.Laden1.Bewegen.Zu', 'EG.Essen.Laden1.Bewegen', 'Zu', 'back', '1', 'mini') }} 
+            </span>
+            {{ uzsu.uzsu_icon('EG.Essen.Laden1.uzsu', 'EG.Essen.Laden1.uzsu', 'Klappladen Kamin', '', '', '', '', 'Zu, Auf') }}	
+Klappladen Kamin </td>
+        </tr>	
+        <tr>  
+          <td align=left>
+            <span data-role="controlgroup" data-type="horizontal">  
+            {{ basic.symbol('EG.Essen.Fenster_Kamin1', 'EG.Essen.Fenster_Kamin', 'Fenster Kamin offen', 'fts_window_2w_open.svg', 0, '', 'icon1') }}
+            {{ basic.symbol('EG.Essen.Fenster_Kamin2', 'EG.Essen.Fenster_Kamin', 'Fenster Kamin geschlossen', icon0~'fts_window_2w.svg') }}
+            </span></td>
+        </tr>
+        <tr>  
+          <td align=left>
+            <span data-role="controlgroup" data-type="horizontal">  
+            {{ basic.button('EG.Essen.Laden2.Bewegen.Auf', 'EG.Essen.Laden2.Bewegen', 'Auf', 'forward', '0', 'mini') }} 
+            {{ basic.button('EG.Essen.Laden2.Bewegen.Zu', 'EG.Essen.Laden2.Bewegen', 'Zu', 'back', '1', 'mini') }} 
+            </span>            
+            {{ uzsu.uzsu_icon('EG.Essen.Laden2.uzsu', 'EG.Essen.Laden2.uzsu', 'Klappladen Spüle', '', '', '', '', 'Zu, Auf') }}	
+&nbsp;Klappladen Sp&uuml;le </td>
+        </tr>
+        <tr>  
+          <td align=left>
+            <span data-role="controlgroup" data-type="horizontal">  
+            {{ basic.symbol('EG.Essen.Fenster_Spuele1', 'EG.Essen.Fenster_Spuele', 'Fenster Spüle offen', 'fts_window_2w_open.svg', 0, '', 'icon1') }}
+            {{ basic.symbol('EG.Essen.Fenster_Spuele2', 'EG.Essen.Fenster_Spuele', 'Fenster Spüle geschlossen', icon0~'fts_window_2w.svg') }}
+            </span></td>
+        </tr>                                                                                                 
+      </table>
+    </div>
+  </div>
+</div>
+<div class="block">
+  <div class=""set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="true">	<h3>Versorgung</h3>  
+      <table width=100%>	
+        <tr>  
+          <td align=left>		{{basic.switch('L1','EG.Essen.Linie_Kueche.Schalten', icon1~'message_socket_on_off.svg', icon0~'message_socket_on_off.svg')}} Steckdosen K&uuml;che 	</td>  
+        </tr>	
+        <tr>  
+          <td align=left>		{{basic.switch('L2','EG.Essen.Linie_Esstisch.Schalten', icon1~'message_socket_on_off.svg', icon0~'message_socket_on_off.svg')}} Steckdosen K&uuml;chentisch 	</td>  
+        </tr>	
+        <tr>  
+          <td align=left>		{{basic.switch('L3','EG.Essen.Linie_Herd.Schalten', icon1~'message_socket_on_off.svg', icon0~'message_socket_on_off.svg')}} Versorgung Herd 	</td>  
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>{% endblock %}

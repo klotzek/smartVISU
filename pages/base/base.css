@@ -1657,3 +1657,16 @@ svg.fx-icon {
 	}
 }
 
+.tilemenu li {
+    border-right: 0 none;
+    border-top: 0 none;
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    height: 70px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0 5px 5px 0;
+    position: relative;
+    width: 50%;
+}

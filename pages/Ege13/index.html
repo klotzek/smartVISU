@@ -1,0 +1,80 @@
+/**
+* -----------------------------------------------------------------------------
+* @package     smartVISU
+* @author      Martin Gleiß
+* @copyright   2012
+* @license     GPL [http://www.gnu.de]
+* -----------------------------------------------------------------------------
+*/
+
+
+{% extends "base.html" %}
+
+
+{% block sidebar %}
+
+	{% import "lib.html" as lib %}
+	{{ lib.updatecheck() }}
+
+
+	{% import "clock.html" as clock %}
+	{{ clock.digiclock('clock') }}
+
+	<div class="center">
+		{{ now|smartdate('l') }}, {{ now|smartdate() }} &nbsp;&nbsp; {{ basic.value('eta_unit.sys.aussentemp.t', 'eta_unit.sys.aussentemp.t') }} &deg;C 
+        </div>
+
+<hr>
+        
+    <div class="center"; "mini">	
+    {% import   "weather.html" as weather  %}        
+    {{ weather.forecastweek('weather_forecastweek') }}
+    </div>
+
+<hr>
+
+    <div class="center">
+          {{ basic.symbol('Moon1', 'env.location.moonphase', ' Neumond', 'icons/moon/moon1.png', 0) }}
+                    {{ basic.symbol('Moon2', 'env.location.moonphase', ' zunehmender Mond', 'icons/moon/moon2.png', 1) }}
+                    {{ basic.symbol('Moon3', 'env.location.moonphase', ' zunehmender Mond', 'icons/moon/moon3.png', 2) }}
+                    {{ basic.symbol('Moon4', 'env.location.moonphase', ' zunehmender Mond', 'icons/moon/moon4.png', 3) }}
+                    {{ basic.symbol('Moon5', 'env.location.moonphase', ' Vollmond', 'icons/moon/moon5.png', 4) }}
+                    {{ basic.symbol('Moon6', 'env.location.moonphase', ' abnehmender Mond', 'icons/moon/moon6.png', 5) }}
+                    {{ basic.symbol('Moon7', 'env.location.moonphase', ' abnehmender Mond', 'icons/moon/moon7.png', 6) }}
+                    {{ basic.symbol('Moon8', 'env.location.moonphase', ' abnehmender Mond', 'icons/moon/moon8.png', 7) }} 
+                    {{ basic.symbol('Moon9', 'env.location.moonphase', ' Neumond', 'icons/moon/moon1.png', 8) }}
+                    , Mondlicht: {{ basic.value('moonlight', 'env.location.moonlight', '%') }}
+             </div>
+
+<hr>
+
+	<div class="center">
+<img src="lib/weather/pics/sun_up.png" width="35"/> {{ basic.formula('Sonnenaufgang', 'env.location.sunrise', 'time') }}
+<img src="lib/weather/pics/sun_down.png" width="35"/> {{ basic.formula('sonnenuntergang', 'env.location.sunset', 'time') }}&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="lib/weather/pics/moon_up.png" width="35"/> {{ basic.formula('mondaufgang', 'env.location.moonrise', 'time') }} 
+<img src="lib/weather/pics/moon_down.png" width="35"/> {{ basic.formula('monduntergang', 'env.location.moonset', 'time') }}
+  	</div>
+    
+<hr>
+
+<!--
+	<div class="center">
+	{{ basic.symbol('EG.Oekonomie.Frostalarm', 'EG.Oekonomie.Frostalarm', 'Frostalarm', icon1~'secur_frost_protection.png') }}
+	</div>
+-->
+
+ 	{% import "calendar.html" as calendar %}
+	{{ calendar.list('calendarlist', 'Kalender Eduard-Ege-13',3)}}  
+  
+  <hr>
+  
+ 	{% import "phone.html" as phone %}
+  {{ phone.list('phonelist', 'Anrufe', 5) }}
+
+  	
+{% endblock %}
+
+{% block content %}
+	{% include 'rooms_menu.html' %}
+{% endblock %}
+

@@ -1,0 +1,228 @@
+/**
+ * -----------------------------------------------------------------------------
+ * @package     smartVISU
+ * @author      Martin Gleiß
+ * @copyright   2012
+ * @license     GPL <http://www.gnu.de>
+ * ----------------------------------------------------------------------------- 
+ */
+{% extends "base.html" %}
+
+{% block sidebar %}
+
+    {% include 'stats.navigation.html' %}
+
+{% endblock %} 
+
+{% block content %}
+
+    <h1><img class="icon" src='{{ icon0 }}sani_boiler_temp.svg'/>Status Heizung</h1>
+    
+    <div class="preblock">
+		
+    </div>
+    <div class="block">
+        <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>Kessel</h3>
+                <table width="100%" style="text-align: left;">
+                <tr>
+                    <td width="70%">Status</td>
+                    <td width="30%">{{ basic.value('eta_unit.kessel.status.t_1', 'eta_unit.kessel.status.t') }}</td>
+                </tr>
+                <tr>
+                    <td width="70%">Kesseldruck</td>
+                    <td width="30%">{{ basic.value('eta_unit.kessel.druck.t', 'eta_unit.kessel.druck.t') }} bar</td>
+                </tr>
+                <tr>
+                <tr>
+                    <td width="70%">Vorlauf</td>
+                    <td width="30%">{{ basic.value('eta_unit.kessel.vorlauf.t', 'eta_unit.kessel.vorlauf.t') }} &deg;C</td>
+                </tr>
+                <tr>
+                    <td width="70%">&nbsp;</td>
+                    <td width="30%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="70%">Au&szlig;entemperatur</td>
+                    <td width="30%">{{ basic.value('eta_unit.sys.aussentemp.t', 'eta_unit.sys.aussentemp.t') }} &deg;C</td>
+                </tr>
+                </table>
+      </div>
+    </div>
+  </div>
+  
+    <div class="block">
+        <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>Z&auml;hlerst&auml;nde</h3>
+                <table width="100%" style="text-align: left;">
+                <tr>
+                    <td width="70%">Volllaststunden</td>
+                    <td width="30%">{{ basic.value('eta_unit.kessel.volllast.t', 'eta_unit.kessel.volllast.t') }}</td>
+                </tr>
+                <tr>
+                    <td width="70%">Gesamtverbrauch</td>
+                    <td width="30%">{{ basic.value('eta_unit.kessel.gesamtverbrauch.t', 'eta_unit.kessel.gesamtverbrauch.t') }} kg</td>
+                </tr>
+                <tr>
+                    <td width="70%">Verbrauch seit Wartung</td>
+                    <td width="30%">{{ basic.value('eta_unit.kessel.verbrauch_wartung.t', 'eta_unit.kessel.verbrauch_wartung.t') }} kg</td>
+                </tr>
+                <tr>
+                    <td width="70%">Beh&auml;lterinhalt</td>
+                    <td width="30%">{{ basic.value('eta_unit.kessel.beh_inhalt.t', 'eta_unit.kessel.beh_inhalt.t') }} kg</td>
+                </tr>
+                <tr>
+                    <td width="70%">Verbrauch seit Entaschung</td>
+                    <td width="30%">{{ basic.value('eta_unit.kessel.verbrauch_entaschung.t', 'eta_unit.kessel.verbrauch_entaschung.t') }} kg</td>
+                </tr>
+                <tr>
+                    <td width="70%">Verbrauch seit Leeren Aschebox</td>
+                    <td width="30%">{{ basic.value('eta_unit.kessel.verbrauch_aschebox.t', 'eta_unit.kessel.verbrauch_aschebox.t') }} kg</td>
+                </tr>
+                </table>
+      </div>
+    </div>
+  </div>
+  
+    <div class="block">
+        <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>Lager</h3>
+                <table width="100%" style="text-align: left;">
+                <tr>
+                    <td width="70%">Austragung</td>
+                    <td width="30%">{{ basic.value('eta_unit.lager.Austragung', 'eta_unit.lager.austragung.t') }}</td>
+                </tr>
+                <tr>
+                    <td width="70%">Vorrat</td>
+                    <td width="30%">{{ basic.value('eta_unit.lager.vorrat', 'eta_unit.lager.vorrat.t') }} kg</td>
+                </tr>
+                  <td>
+                  {{ basic.tank('pellet_tank', 'eta_unit.lager.vorrat.t', 0, 5500, 5, 'pallets') }}
+                  </td>
+                </table>
+	</div>
+      </div>
+    </div>
+  
+    <div class="block">
+        <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>Heizkreis</h3>
+                <table width="100%" style="text-align: left;">
+                <tr>
+                    <td width="70%">Status</td>
+                    <td width="30%">{{ basic.value('eta_unit.heizkreis.status.t', 'eta_unit.heizkreis.status.t') }}</td>
+                </tr>
+                <tr>
+                    <td width="70%">Temperatur</td>
+                    <td width="30%">{{ basic.value('eta_unit.HK2.temperatur', 'eta_unit.HK2.temperatur.t') }} &deg;C</td>
+                </tr>
+                <tr>
+                    <td width="70%">Vorlauf</td>
+                    <td width="30%">{{ basic.value('eta_unit.heizkreis.vorlauf', 'eta_unit.heizkreis.vorlauf.t') }} &deg;C</td>
+                </tr>
+                <tr>
+                    <td width="70%">Heizkurve</td>
+                    <td width="30%">{{ basic.value('eta_unit.heizkreis.heizkurve', 'eta_unit.heizkreis.heizkurve.t') }} &deg;C</td>
+                </tr>
+                <tr>
+                    <td width="70%">Schieber</td>
+                    <td width="30%">{{ basic.value('eta_unit.heizkreis.schieber', 'eta_unit.heizkreis.schieber.t') }} %</td>
+                </tr>
+                <tr>
+                    <td width="70%">Vorlauf bei -10&deg;C</td>
+                    <td width="30%">{{ basic.value('eta_unit.heizkreis.vorlaufm10', 'eta_unit.heizkreis.vorlauf_m10.t') }} &deg;C</td>
+                </tr>
+                <tr>
+                    <td width="70%">Vorlauf bei +10&deg;C</td>
+                    <td width="30%">{{ basic.value('eta_unit.heizkreis.vorlaufp10', 'eta_unit.heizkreis.vorlauf_10.t') }} &deg;C</td>
+                </tr>
+                <tr>
+                    <td width="70%">Absenkung</td>
+                    <td width="30%">{{ basic.value('eta_unit.heizkreis.absenkung', 'eta_unit.heizkreis.absenkung.t') }} K</td>
+                </tr>
+                <tr>
+                    <td width="70%">Heizgrenze Tag</td>
+                    <td width="30%">{{ basic.value('eta_unit.heizkreis.grenze_tag', 'eta_unit.heizkreis.grenze_tag.t') }} &deg;C</td>
+                </tr>
+                <tr>
+                    <td width="70%">Heizgrenze Nacht</td>
+                    <td width="30%">{{ basic.value('eta_unit.heizkreis.grenze_nacht', 'eta_unit.heizkreis.grenze_nacht.t') }} &deg;C</td>
+                </tr>
+                </table>
+	</div>
+      </div>
+    </div>
+
+    <div class="block">
+        <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>Abgas</h3>
+                <table width="100%" style="text-align: left;">
+                <tr>
+                    <td width="70%">Gebl&auml;se</td>
+                    <td width="30%">{{ basic.value('eta_unit.abgas.geblaese', 'eta_unit.abgas.geblaese.t') }}</td>
+                </tr>
+                <tr>
+                    <td width="70%">Restsauerstoff</td>
+                    <td width="30%">{{ basic.value('eta_unit.abgas.restsauerstoff', 'eta_unit.abgas.restsauerstoff.t') }} %</td>
+                </tr>
+                <tr>
+                    <td width="70%">Entaschung</td>
+                    <td width="30%">{{ basic.value('eta_unit.abgas.entaschung', 'eta_unit.abgas.entaschung.t') }}</td>
+                </tr>
+                <tr>
+                    <td width="70%">Beginn Ruhezeit</td>
+                    <td width="30%">{{ basic.value('eta_unit.abgas.beginn_ruhezeit', 'eta_unit.abgas.beginn_ruhezeit.t') }}</td>
+                </tr>
+                <tr>
+                    <td width="70%">Dauer Ruhezeit</td>
+                    <td width="30%">{{ basic.value('eta_unit.abgas.dauer_ruhezeit', 'eta_unit.abgas.dauer_ruhezeit.t') }}</td>
+                </tr>
+                <tr>
+                    <td width="70%">Entaschung nach min.</td>
+                    <td width="30%">{{ basic.value('eta_unit.abgas.entaschung_nach_min', 'eta_unit.abgas.entaschung_nach_min.t') }} kg</td>
+                </tr>
+                <tr>
+                    <td width="70%">Entaschung nach max.</td>
+                    <td width="30%">{{ basic.value('eta_unit.abgas.entaschung_nach_max', 'eta_unit.abgas.entaschung_nach_max.t') }} kg</td>
+                </tr>
+                <tr>
+                    <td width="70%">Aschebox leeren nach</td>
+                    <td width="30%">{{ basic.value('eta_unit.abgas.aschebox_leeren_nach', 'eta_unit.abgas.aschebox_leeren_nach.t') }} kg</td>
+                </tr>
+                </table>
+	</div>
+      </div>
+    </div>
+  
+    <div class="block">
+        <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>Warmwasser</h3>
+                <table width="100%" style="text-align: left;">
+                <tr>
+                    <td width="70%">Schaltzustand</td>
+                    <td width="30%">{{ basic.value('eta_unit.WW.schaltzustand', 'eta_unit.WW.schaltzustand.t') }}</td>
+                </tr>
+                <tr>
+                    <td width="70%">Temperatur</td>
+                    <td width="30%">{{ basic.value('eta_unit.WW.temperatur', 'eta_unit.WW.temperatur.t') }} &deg;C</td>
+                </tr>
+                <tr>
+                    <td width="70%">Speicher Soll</td>
+                    <td width="30%">{{ basic.value('eta_unit.WW.WW_Speicher_Soll', 'eta_unit.WW.WW_Speicher_Soll.t') }} &deg;C</td>
+                </tr>
+                <tr>
+                    <td width="70%">Warmwasserspeicher</td>
+                    <td width="30%">{{ basic.value('eta_unit.WW.warmwasserspeicher', 'eta_unit.WW.warmwasserspeicher.t') }} &deg;C</td>
+                </tr>
+                </table>
+	</div>
+      </div>
+    </div>
+  
+{% endblock %}

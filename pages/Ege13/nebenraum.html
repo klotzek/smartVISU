@@ -1,0 +1,97 @@
+/**
+* -----------------------------------------------------------------------------
+* @package     smartVISU
+* @author      Martin Gleiß
+* @copyright   2012
+* @license     GPL [http://www.gnu.de]
+* -----------------------------------------------------------------------------
+* 		{{basic.switch('S1','Erdgeschoss.Hauswirtschaft.Sofa1.Schalten', icon1~'light_floor_lamp.svg', icon0~'light_floor_lamp.svg')}} Sofa Beleuchtung
+*/
+
+
+{% extends "base.html" %}
+
+{% block sidebar %}
+	{%include 'rooms_menu.html' %}
+{% endblock %}
+
+{% block content %}
+<h1>
+<img class="icon"' src='{{ icon0 }}scene_stairs.svg'/>
+Nebenr&auml;ume</h1>
+
+<div class="block">
+<div class=""set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+<div data-role="collapsible" data-collapsed="false">
+	<h3>Hauswirtschaft</h3>
+  <table width=100%>
+		  <tr>
+	<td align=left>
+ 		{{basic.switch('S1','Erdgeschoss.Hauswirtschaft.Licht.Schalten', icon1~'light_ceiling_light.svg', icon0~'light_ceiling_light.svg')}} Beleuchtung Hauswirtschaft
+	</td>
+  </tr>
+ 	<tr>
+  <td align=left>
+		{{basic.switch('L1','EG.Hauswirtschaft.Linie1.Schalten', icon1~'message_socket_on_off.svg', icon0~'message_socket_on_off.svg')}} Steckdosen zur K&uuml;che hin
+	</td>
+  </tr>
+	<tr>
+  <td align=left>
+		{{basic.switch('L2','EG.Hauswirtschaft.Linie2.Schalten', icon1~'message_socket_on_off.svg', icon0~'message_socket_on_off.svg')}} Steckdosen Waschmaschine
+	</td>
+  </tr>
+ 
+</table>
+
+
+</div>
+</div>
+</div>
+
+<div class="block">
+<div class=""set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+<div data-role="collapsible" data-collapsed="false">
+	<h3>Ankommen</h3>
+  <table width=100%>
+	<tr>
+  <td align=left>
+
+            {{ device.rtr('EG.Ankommen.Heizung', '',    'EG.Ankommen.Heizung.ist', 'EG.Ankommen.Heizung.soll', 'EG.Ankommen.Heizung.modus', 'EG.Ankommen.Heizung.modus', 'EG.Ankommen.Heizung.modus', 'EG.Ankommen.Heizung.status') }} </td>
+
+</td>
+</tr>
+		  <tr>
+	<td align=left>
+ 		{{basic.switch('Erdgeschoss.Ankommen.Licht.Schalten','Erdgeschoss.Ankommen.Licht.Schalten', icon1~'light_stairs.svg', icon0~'light_stairs.svg')}} Beleuchtung Ankommen
+	</td>
+  </tr>
+  
+  
+  
+	</table>
+</div>
+</div>
+</div>
+
+<div class="block">
+<div class=""set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+<div data-role="collapsible" data-collapsed="false">
+	<h3>Heizungsraum</h3>
+  <table width=100%>
+		  <tr>
+	<td align=left>
+ 		{{basic.switch('EG.Oekonomie.Licht_Heizung.Schalten','EG.Oekonomie.Licht_Heizung.Schalten', icon1~'light_ceiling_light.svg', icon0~'light_ceiling_light.svg')}} Beleuchtung Heizungsraum
+	</td>
+  </tr>
+  
+  
+  
+	</table>
+</div>
+</div>
+</div>
+
+
+
+{% endblock %}
+

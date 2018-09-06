@@ -1,0 +1,145 @@
+/**
+* -----------------------------------------------------------------------------
+* @package     smartVISU
+* @author      Martin Gleiß
+* @copyright   2012
+* @license     GPL [http://www.gnu.de]
+* -----------------------------------------------------------------------------
+* 		{{basic.switch('S1','Erdgeschoss.Schlafen.Melike.Schalten', icon1~'light_floor_lamp.svg', icon0~'light_floor_lamp.svg')}} Sofa Beleuchtung
+*/
+
+
+{% extends "base.html" %}
+
+{% block sidebar %}
+	{%include 'rooms_menu.html' %}
+{% endblock %}
+
+{% block content %}
+{% import "Widgets/uzsu.html" as uzsu %}
+<h1>
+<img class="icon"' src='{{ icon0 }}control_building_outside.svg'/>
+Scheune &amp; Au&szlig;enbereich</h1>
+
+
+<div class="block">
+<div class=""set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+<div data-role="collapsible" data-collapsed="false">
+	<h3>Beleuchtung</h3>
+  <table width=100%>
+	<tr>
+  <td align=left>
+
+		{{basic.switch('EG.Oekonomie.Licht_Heizung.Schalten','EG.Oekonomie.Licht_Heizung.Schalten', icon1~'light_ceiling_light.svg', icon0~'light_ceiling_light.svg')}} Beleuchtung Heizungsraum {{ basic.float('EG.Oekonomie.Temp_Heizung.ist2', 'EG.Oekonomie.Temp_Heizung.ist', '°') }}
+	</td>
+  </tr>
+
+  <tr>
+	<td align=left>
+		{{basic.switch('EG.Oekonomie.Licht_Scheune.Schalten','EG.Oekonomie.Licht_Scheune.Schalten', icon1~'light_garage.svg', icon0~'light_garage.svg')}} Beleuchtung Scheune
+	</td>
+  </tr>
+
+  <tr>
+	<td align=left>
+		{{basic.switch('EG.Oekonomie.Licht_Aussen.Schalten','EG.Oekonomie.Licht_Aussen.Schalten', icon1~'light_wall_3.svg', icon0~'light_wall_3.svg')}} 
+    {{ uzsu.uzsu_icon('EG.Oekonomie.Licht_Aussen.uzsu', 'EG.Oekonomie.Licht_Aussen.uzsu', 'Beleuchtung Au&szlig;en') }}	 Beleuchtung Au&szlig;en
+	</td>
+  </tr>
+
+  <tr>
+	<td align=left>
+		{{basic.switch('EG.Oekonomie.Licht_Sprechanlage.Schalten','EG.Oekonomie.Licht_Sprechanlage.Schalten', icon1~'light_wall_1.svg', icon0~'light_wall_1.svg')}} 
+    {{ uzsu.uzsu_icon('EG.Oekonomie.Licht_Sprechanlage.uzsu', 'EG.Oekonomie.Licht_Sprechanlage.uzsu', 'Beleuchtung Sprechanlage') }} Beleuchtung Sprechanlage	
+
+	</td>
+  </tr>
+
+	</table>
+</div>
+</div>
+</div>
+
+
+
+
+<div class="block">
+<div class=""set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+<div data-role="collapsible" data-collapsed="false">
+	<h3>Tore</h3>
+  <table width=100%>
+	<tr>
+  <td align=left>
+<span data-role="controlgroup" data-type="horizontal"> 
+{{ basic.button('EG.Oekonomie.Scheunentor.Bewegen', 'EG.Oekonomie.Scheunentor.Bewegen', 'fahren', 'gear', '1', 'mini') }}
+{{ basic.dual('EG.Oekonomie.Scheunentor.Automatik', 'EG.Oekonomie.Scheunentor.Automatik', icon1~'control_reset.svg', icon0~'control_on_off.svg','','','mini') }}
+&nbsp;Scheunentor auf / stopp / zu 
+{{ basic.text('EG.Oekonomie.Scheunentor.Automatik2', 'EG.Oekonomie.Scheunentor.Automatik', ' Automatik an', ' Automatik aus') }}
+</span>
+</td>
+</tr>
+	<tr>
+  <td align=left>
+<span data-role="controlgroup" data-type="horizontal"> 
+{{ basic.button('EG.Oekonomie.Einfahrtstor.Bewegen', 'EG.Oekonomie.Einfahrtstor.Bewegen', 'fahren', 'gear', '1', 'mini') }}
+{{ basic.dual('EG.Oekonomie.Einfahrtstor.Automatik', 'EG.Oekonomie.Einfahrtstor.Automatik', icon1~'control_reset.svg', icon0~'control_on_off.svg','','','mini') }}
+&nbsp;Einfahrtstor auf / stopp / zu 
+{{ basic.text('EG.Oekonomie.Einfahrtstor.Automatik2', 'EG.Oekonomie.Einfahrtstor.Automatik', ' Automatik an', ' Automatik aus') }}
+</span>
+</td>
+</tr>
+/**
+*  <tr>
+*    <td align=left>
+*            {{ basic.symbol('EG.Oekonomie.Einfahrtstor.Status1', 'EG.Oekonomie.Einfahrtstor.Tor_Status', ' Einfahrtstor offen',icon1~'fts_yard_gate_2w_open.svg', 0) }}
+*            {{ basic.symbol('EG.Oekonomie.Einfahrtstor.Status2', 'EG.Oekonomie.Einfahrtstor.Tor_Status', ' Einfahrtstor geschlossen',icon0~'fts_yard_gate_2w.svg', 1) }}
+*    </td>
+*  </tr>
+*/
+  <tr>
+	<td align=left>
+            {{ basic.symbol('EG.Oekonomie.Scheunentor.Status1', 'EG.Oekonomie.Scheunentor.Tor_Status', ' Scheunentor offen',icon1~'fts_yard_gate_2w_open.svg', 0) }}
+            {{ basic.symbol('EG.Oekonomie.Scheunentor.Status2', 'EG.Oekonomie.Scheunentor.Tor_Status', ' Scheunentor geschlossen',icon0~'fts_yard_gate_2w.svg', 1) }}
+	</td>
+  </tr>
+  <tr>
+	<td align=left>
+            {{ basic.symbol('EG.Oekonomie.Scheunentor_Zirell.Status1', 'EG.Oekonomie.Scheunentor_Zirell.Tor_Status', ' Scheunentor Zirell offen',icon1~'fts_yard_gate_2w_open.svg', 0) }}
+            {{ basic.symbol('EG.Oekonomie.Scheunentor_Zirell.Status2', 'EG.Oekonomie.Scheunentor_Zirell.Tor_Status', ' Scheunentor Zirell geschlossen',icon0~'fts_yard_gate_2w.svg', 1) }}
+	</td>
+  </tr>
+  <tr>
+	<td align=left>
+            {{ basic.symbol('EG.Oekonomie.Scheunentor_Berthold.Status1', 'EG.Oekonomie.Scheunentor_Berthold.Tor_Status', ' Scheunentor Berthold offen',icon1~'fts_yard_gate_2w_open.svg', 0) }}
+            {{ basic.symbol('EG.Oekonomie.Scheunentor_Berthold.Status2', 'EG.Oekonomie.Scheunentor_Berthold.Tor_Status', ' Scheunentor Berthold geschlossen',icon0~'fts_yard_gate_2w.svg', 1) }}
+	</td>
+  </tr>
+</table>
+
+
+</div>
+</div>
+</div>
+
+
+<div class="block">
+<div class=""set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+<div data-role="collapsible" data-collapsed="false">
+	<h3>Versorgung</h3>
+  <table width=100%>
+	<tr>
+  <td align=left>
+		{{basic.switch('L1','EG.Schlafen.Linie_Schlafzimmer.Schalten', icon1~'message_socket_on_off.svg', icon0~'message_socket_on_off.svg')}} Steckdosen Scheune
+	</td>
+  </tr>
+
+
+</table>
+</div>
+</div>
+</div>
+
+
+
+{% endblock %}
+

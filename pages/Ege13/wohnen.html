@@ -1,0 +1,183 @@
+/** * ----------------------------------------------------------------------------- * @package     smartVISU * @author      Martin Gleiß * @copyright   2012 * @license     GPL [http://www.gnu.de] * ----------------------------------------------------------------------------- * 		{{basic.switch('S1','Erdgeschoss.Wohnen.Sofa1.Schalten', icon1~'light_floor_lamp.svg', icon0~'light_floor_lamp.svg')}} Sofa Beleuchtung */ 
+
+{% extends "base.html" %} 
+{% block sidebar %} 	
+{%include 'rooms_menu.html' %} 
+{% endblock %} 
+{% block content %} 
+
+{% import "Widgets/ext.html" as ext %}
+{% import "Widgets/uzsu.html" as uzsu %}
+{% import "Widgets/shifter.html" as shifter %}
+{% import "Widgets/widget_sonos.html" as sonos %}
+
+          
+
+<h1>
+  <img class="icon"' src='{{ icon0 }}scene_livingroom.svg'/>Wohnen</h1>  
+<table width=100%>	
+  <tr>  
+    <td align=middle>Szenen     
+      <span data-role="controlgroup" data-type="horizontal">       
+      {{ basic.button('SZ1', 'EG.Wohnen.Szene_Ankommen_schalten', 'Ankommen', 'icons/ws/status_available.svg', '1','mini') }}     
+      {{ basic.button('SZ2', 'EG.Wohnen.Szene_Party_schalten', '', 'icons/ws/scene_party.svg', '1', 'mini') }}     
+      {{ basic.button('EG.Wohnen.Szene_Essen_schalten', 'EG.Wohnen.Szene_Essen_schalten', '', 'icons/ws/scene_dinner.svg', '1','mini') }}     
+      {{ basic.button('EG.Wohnen.Szene_TV_schalten', 'EG.Wohnen.Szene_TV_schalten', '', 'icons/ws/it_television.svg', '1','mini') }}
+      {{ basic.button('EG.Schlafen.Szene_alle_Lichter_aus_schalten', 'EG.Schlafen.Szene_alle_Lichter_aus_schalten', '', 'icons/ws/status_away_1.svg', '0','mini') }} 	
+      </span>  </td>  
+  </tr>	
+</table>
+
+<table width=100%>	
+  <tr>  
+    <td align=middle>Musik: 
+{{ basic.value('text3', 'MySonos.Wohnen.track_artist') }}
+
+    </td>  
+  </tr>	
+</table>
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">	<h3>Beleuchtung</h3>  
+      <table width=100%>	
+        <tr>  
+          <td align=left width = 5%>		
+	    {{ shifter.shifter('EG.Wohnen.Sofa1', 'EG.Wohnen.Sofa1.Schalten', 'EG.Wohnen.Sofa1.Dimmen')}}
+	  </td>  
+          <td>		
+	    {{ shifter.myslider('EG.Wohnen.Sofa1.slider', 'Sofa Berthold', 'EG.Wohnen.Sofa1.Dimmen', 0, 100, 5)}}
+	  </td>  
+        </tr>
+
+	  <td align=left width = 5%>		
+	    {{ shifter.shifter('EG.Wohnen.Sofa2', 'EG.Wohnen.Sofa2.Schalten', 'EG.Wohnen.Sofa2.Dimmen')}}
+	  </td>  
+          <td>		
+	    {{ shifter.myslider('EG.Wohnen.Sofa2.slider', 'Sofa Kamin', 'EG.Wohnen.Sofa2.Dimmen', 0, 100, 5)}}
+	  </td>  
+        </tr>
+
+	  <td align=left width = 5%>		
+	    {{ shifter.shifter('EG.Wohnen.Multimedia', 'EG.Wohnen.Multimedia.Schalten', 'EG.Wohnen.Multimedia.Dimmen')}}
+	  </td>  
+          <td>		
+	    {{ shifter.myslider('EG.Wohnen.Multimedia.slider', 'Beleuchtung Multimedia', 'EG.Wohnen.Multimedia.Dimmen', 0, 100, 5)}}
+	  </td>  
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>  
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">	<h3>Klappl&auml;den</h3>  
+      <table width=100%>	
+        <tr>  
+          <td align=left>
+            <span data-role="controlgroup" data-type="horizontal">  
+            {{ basic.button('EG.Wohnen.Laden1.Bewegen.Auf', 'EG.Wohnen.Laden1.Bewegen', 'Auf', 'forward', '0', 'mini') }} 
+            {{ basic.button('EG.Wohnen.Laden1.Bewegen.Zu', 'EG.Wohnen.Laden1.Bewegen', 'Zu', 'back', '1', 'mini') }} 
+            </span>
+            {{ uzsu.uzsu_icon('EG.Wohnen.Laden1.uzsu', 'EG.Wohnen.Laden1.uzsu', 'Klappladen Wohnen Stra&szlig;e', '', '', '', '', 'Zu, Auf') }}	
+
+            Fenster Stra&szlig;e </td>
+           </tr> 
+           <tr>           
+            <td align=left>
+            {{ basic.symbol('EG.Wohnen.Fenster_Strasse.auf', 'EG.Wohnen.Fenster_Strasse', 'Fenster offen', 'fts_window_1w_open.svg', 0, '','icon1') }}
+            {{ basic.symbol('EG.Wohnen.Fenster_Strasse.zu', 'EG.Wohnen.Fenster_Strasse', 'Fenster geschlossen', icon0~'fts_window_1w.svg') }}
+
+            </td>
+        </tr>
+      </table>
+        <hr>
+      <table width=100%>	
+        
+        <tr>  
+          <td align=left>
+            <span data-role="controlgroup" data-type="horizontal">  
+            {{ basic.button('EG.Wohnen.Laden2.Bewegen.Auf', 'EG.Wohnen.Laden2.Bewegen', 'Auf', 'forward', '0', 'mini') }} 
+            {{ basic.button('EG.Wohnen.Laden2.Bewegen.Zu', 'EG.Wohnen.Laden2.Bewegen', 'Zu', 'back', '1', 'mini') }} 
+            </span>
+            {{ uzsu.uzsu_icon('EG.Wohnen.Laden2.uzsu', 'EG.Wohnen.Laden2.uzsu', 'Klappladen Wohnen Berthold', '', '', '', '', 'Zu, Auf') }}	
+
+            Fenster Berthold </td>
+        </tr>
+           <tr>           
+            <td align=left>
+            {{ basic.symbol('EG.Wohnen.Fenster_Berthold.auf', 'EG.Wohnen.Fenster_Berthold', 'Fenster offen', 'fts_window_1w_open.svg', 0, '', 'icon1') }}
+            {{ basic.symbol('EG.Wohnen.Fenster_Berthold.zu', 'EG.Wohnen.Fenster_Berthold', 'Fenster geschlossen', icon0~'fts_window_1w.svg') }}
+
+            </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">	<h3>Heizung, heizt mit {{basic.float('EG.Wohnen.Heizung.stellwert', 'EG.Wohnen.Heizung.stellwert', '%')}}</h3>  
+      <table width=100%>	
+        <tr>  
+          <td align=left>           
+
+          {{ ext.rtr('EG.Wohnen.Heizung1', 'EG.Wohnen.Heizung.ist', 'EG.Wohnen.Heizung.soll', 'EG.Wohnen.Heizung.sollwertverschiebung', 'EG.Wohnen.Heizung.modus', 'EG.Wohnen.Heizung.stellwert', 'EG.Wohnen.Heizung.uzsu', 0.5) }}
+
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="block">
+<div class=""set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+<div data-role="collapsible" data-collapsed="false">
+	<h3>Heizungs-Plot</h3>
+  <table width=100%>
+	<tr>
+  <td align=left>
+  
+  {{ plot.rtr('plot_wohnen_1', 'EG.Wohnen.Heizung.ist', 'EG.Wohnen.Heizung.soll', 'EG.Wohnen.Heizung.status') }}		
+   
+  </td>
+  </tr>
+
+
+</table>
+</div>
+</div>
+</div>
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">	<h3>Versorgung</h3>  
+      <table width=100%>	
+        <tr>  
+          <td align=left>		{{basic.switch('L1','EG.Wohnen.Linie1.Schalten', icon1~'message_socket_on_off.svg', icon0~'message_socket_on_off.svg')}} Steckdosen Multimedia 	</td>  
+        </tr>	
+        <tr>  
+          <td align=left>		{{basic.switch('L2','EG.Wohnen.Linie2.Schalten', icon1~'message_socket_on_off.svg', icon0~'message_socket_on_off.svg')}} Steckdosen Wohnzimmer 	</td>  
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">	<h3>Sonos</h3>  
+
+        {{ sonos.player('sonos_wohnzimmer', 'MySonos.Wohnen') }}
+
+    </div>
+  </div>
+</div>  
+
+
+{% endblock %}

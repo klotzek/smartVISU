@@ -1,0 +1,30 @@
+/**
+ * MDT Glass RTR (Room Temperatur Regulator)
+ *
+ */
+{% macro rtr(id, gad_actual, gad_set_value, gad_set, gad_status, gad_heat_value, gad_uzsu, step) %}
+{% import "basic.html" as basic %}
+{% import "Widgets/uzsu.html" as uzsu %}
+
+<div id="{{ uid(page, id) }}" data-widget="device.rtr" data-step="{{ step|default(0.5) }}" class="rtr">
+
+    <div class="actual">
+         <div class="temp">{{ basic.float(id~'actual', gad_actual, '&deg;C' ) }}</div>
+    </div>
+
+    <div class="set">
+        <a data-role="button" data-icon="minus" data-inline="true" data-iconpos="notext" class="ui-mini"></a>
+        <div class="temp" style="display:none;">{{ basic.float(id~'set', gad_set, '°' ) }}</div>
+        <div class="temp">{{ basic.float(id~'set_value', gad_set_value, '&deg;C' ) }}</div>
+        <a data-role="button" data-icon="plus" data-inline="true" data-iconpos="notext" class="ui-mini"></a>
+    </div>
+
+    <div class="control">
+        {{ basic.switch(id~'mode', gad_status, icon1~'user_available.svg', icon0~'user_away.svg', '1', '2') }}
+        {{ basic.switch(id~'night', gad_status, icon1~'scene_night.svg', icon0~'scene_day.svg', '3', '2') }}
+        {{ basic.switch(id~'frost', gad_status, icon1~'weather_frost.svg', icon0~'weather_frost.svg', '4', '2') }}
+        {{ basic.shifter(id~'shift', '', gad_heat_value, icon1~'sani_heating_series_00.png', icon0~'sani_heating_series_00.png',0,90 ) }}
+        {{ uzsu.uzsu_icon(id~'uzsu', gad_uzsu, 'Heizung', '0', '', '', 'list', 'Da:1, Weg:2, Nacht:3') }}
+    </div>
+</div>
+{% endmacro %}

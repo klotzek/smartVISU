@@ -1,0 +1,88 @@
+/**
+ * -----------------------------------------------------------------------------
+ * @package     smartVISU
+ * @author      Martin Gleiß
+ * @copyright   2012
+ * @license     GPL <http://www.gnu.de>
+ * ----------------------------------------------------------------------------- 
+ */
+ 
+{% extends "weather1.html" %}
+
+
+{% block content %}
+    {% import "weather.html" as weather %}
+    <h1><img class="icon" src='{{ icon0 }}it_camera.svg'/>Webcams</h1>
+   
+    <div class="block" style="width: 50%">
+        <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>Hofkamera</h3>
+		<div class="image">
+                    <img class="" src="http://192.168.1.30/tmpfs/auto.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="block" style="width: 50%">
+        <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>Hegaublick</h3>
+		<div class="image">
+                    <img class="" src="http://www.hegaublick.de/pics/cam/img0000.jpg?counter={{ random(10000000) }}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="block" style="width: 50%">
+        <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>Engen</h3>
+		<div class="image">
+                    <img class="" src="http://www.engen.de/webcam/current.jpg?counter={{ random(10000000) }}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block" style="width: 50%">
+        <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>Dreifaltigkeitsberg</h3>
+		<div class="image">
+                    <img class="" src="http://sp.itatbusiness.de/BilderKameraNeu/aktuell/liveHQ.jpg?counter={{ random(10000000) }}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="block" style="width: 50%">
+        <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>Hamburg Rathausmarkt</h3>
+                <div class="image">
+                    <img class="" src="http://www.hamburger-rathausmarkt.de/rathausmarkt.jpg?counter={{ random(10000000) }}">
+                </div>
+                <div class="mini">© by <a href="http://www.hamburger-rathausmarkt.de/" target="_blank">http://www.hamburger-rathausmarkt.de/</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block" style="width: 100%">
+        <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+            <div data-role="collapsible" data-collapsed="false">
+                <h3>Townsville, Australia</h3>
+                <div class="image">
+                    <img class="" src="http://shane76.customer.netspace.net.au/webcam.jpg?counter={{ random(10000000) }}">
+                </div>
+            </div>
+        </div>	
+    </div>
+{% endblock %}
+
+

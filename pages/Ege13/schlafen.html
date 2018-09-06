@@ -1,0 +1,177 @@
+/**
+* -----------------------------------------------------------------------------
+* @package     smartVISU
+* @author      Martin Gleiß
+* @copyright   2012
+* @license     GPL [http://www.gnu.de]
+* -----------------------------------------------------------------------------
+* 
+*/
+
+
+{% extends "base.html" %}
+
+{% block sidebar %}
+{%include 'rooms_menu.html' %}
+{% endblock %}
+
+{% block content %}
+{% import "Widgets/ext.html" as ext %}
+{% import "Widgets/uzsu.html" as uzsu %}
+{% import "Widgets/shifter.html" as shifter %}
+ 
+{% import "plot.html" as plot %}
+
+<h1>
+<img class="icon"' src='{{ icon0 }}scene_sleeping.svg'/>
+Schlafen
+</h1>
+
+<table width=100%>
+  <tr>
+    <td align=middle>
+Szenen &nbsp;  
+    <span data-role="controlgroup" data-type="horizontal">  
+    {{ basic.button('EG.Schlafen.Szene_Aufstehen_schalten', 'EG.Schlafen.Szene_Aufstehen_schalten', '', 'icons/ws/audio_eject.svg', '1', 'mini') }}
+    {{ basic.button('EG.Schlafen.Szene_Fernsehen_schalten', 'EG.Schlafen.Szene_Fernsehen_schalten', '', 'icons/ws/it_television.svg', '1','mini') }}
+    {{ basic.button('EG.Schlafen.Szene_alle_Lichter_aus_schalten', 'EG.Schlafen.Szene_alle_Lichter_aus_schalten', '', 'icons/ws/scene_night.svg', '0','mini') }}
+    </span>
+    </td>
+  </tr>
+</table>
+
+<div class="block">
+  <div class=""set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+    <h3>Beleuchtung</h3>
+    <table width=100%>
+        <tr>  
+          <td align=left width = 5%>		
+	    {{ shifter.shifter('EG.Schlafen.Licht_Juergen', 'EG.Schlafen.Licht_Juergen.Schalten', 'EG.Schlafen.Licht_Juergen.Dimmen')}}
+	  </td>  
+          <td>		
+	    {{ shifter.myslider('EG.Schlafen.Licht_Juergen.slider','Jürgen', 'EG.Schlafen.Licht_Juergen.Dimmen', 0, 100, 5)}}
+	  </td>  
+        </tr>
+
+        <tr>  
+          <td align=left width = 5%>		
+	    {{ shifter.shifter('EG.Schlafen.Licht_Melike', 'EG.Schlafen.Licht_Melike.Schalten', 'EG.Schlafen.Licht_Melike.Dimmen')}}
+	  </td>  
+          <td>		
+	    {{ shifter.myslider('EG.Schlafen.Licht_Melike.slider','Melike', 'EG.Schlafen.Licht_Melike.Dimmen', 0, 100, 5)}}
+	  </td>  
+        </tr>
+
+        <tr>  
+          <td align=left width = 5%>		
+	    {{ shifter.shifter('EG.Schlafen.Licht', 'EG.Schlafen.Licht.Schalten', 'EG.Schlafen.Licht.Dimmen')}}
+	  </td>  
+          <td>		
+	    {{ shifter.myslider('EG.Schlafen.Licht.slider', 'Schlafzimmer Beleuchtung', 'EG.Schlafen.Licht.Dimmen', 0, 100, 5)}}
+	  </td>  
+        </tr>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="block">
+  <div class=""set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+    <h3>Klappladen</h3>
+    <table width=100%>
+    <tr>
+      <td align=left>
+      <span data-role="controlgroup" data-type="horizontal"> 
+      {{ basic.button('KL1a', 'EG.Schlafen.Laden1.Bewegen', 'Auf', 'forward', '0', 'mini') }}
+      {{ basic.button('KL1z', 'EG.Schlafen.Laden1.Bewegen', 'Zu', 'back', '1', 'mini') }}
+      </span>
+
+      {{ uzsu.uzsu_icon('EG.Schlafen.Laden1.uzsu', 'EG.Schlafen.Laden1.uzsu', 'Klappladen Schlafen', '', '', '', '', 'Zu, Auf') }}	
+
+      Fenster Schlafzimmer
+      </td>
+    </tr>
+    <tr>           
+      <td align=left>
+      {{ basic.symbol('EG.Schlafen.Fenster_Strasse.zu', 'EG.Schlafen.Fenster_Strasse', 'Fenster geschlossen', icon0~'fts_window_1w.svg',0) }}
+      {{ basic.symbol('EG.Schlafen.Fenster_Strasse.auf', 'EG.Schlafen.Fenster_Strasse', 'Fenster offen', icon1~'fts_window_1w_open.svg') }}
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;
+      </td>
+    </tr>
+
+    <tr>
+      <td>&nbsp;
+      </td>
+    </tr>
+
+    </table>	
+    </div>
+  </div>
+</div>
+
+
+<div class="block">
+  <div class=""set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+    <h3>Versorgung</h3>
+    <table width=100%>
+    <tr>
+      <td align=left>
+      {{basic.switch('L1','EG.Schlafen.Linie_Schlafzimmer.Schalten', icon1~'message_socket_on_off.svg', icon0~'message_socket_on_off.svg')}} Steckdosen Schlafzimmer
+      </td>
+    </tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="block">
+  <div class=""set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+    <h3>Heizung, heizt mit {{basic.float('EG.Schlafen.Heizung.stellwert', 'EG.Schlafen.Heizung.stellwert', '%')}}</h3>
+    <table width=100%>
+     <tr>
+      <td align=left>
+
+            {{ ext.rtr('EG.Schlafen.Heizung1', 'EG.Schlafen.Heizung.ist', 'EG.Schlafen.Heizung.soll', 'EG.Schlafen.Heizung.sollwertverschiebung', 'EG.Schlafen.Heizung.modus', 'EG.Schlafen.Heizung.stellwert', 'EG.Schlafen.Heizung.uzsu', 0.5) }}
+
+      </td>
+    </tr>
+    </table>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="block">
+  <div class=""set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+     <h3>Heizungs-Plot</h3>
+     <table width=100%>
+     <tr>
+	<td align=left>
+  
+	{{ plot.rtr('plot_schlafen_1', 'EG.Schlafen.Heizung.ist', 'EG.Schlafen.Heizung.soll', 'EG.Schlafen.Heizung.status') }}		
+   
+	</td>
+    </tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+

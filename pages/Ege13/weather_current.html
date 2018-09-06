@@ -1,0 +1,60 @@
+/**
+ * -----------------------------------------------------------------------------
+ * @package     smartVISU
+ * @author      Martin Gleiß
+ * @copyright   2012
+ * @license     GPL <http://www.gnu.de>
+ * ----------------------------------------------------------------------------- 
+ */
+ 
+{% extends "weather_overlay.html" %}
+
+
+{% block content %}
+    <h1><img class="icon" src='{{ icon0 }}weather_cloudy.svg'/>Wetter &nbsp;&nbsp; {{ basic.value('eta_unit.sys.aussentemp.t', 'eta_unit.sys.aussentemp.t') }} &deg;C </h1>
+    
+    <div class="preblock">
+    </div>
+   
+   {% import   "weather.html" as weather  %}
+   
+   {{ weather.current('weather_current') }}
+   
+   <hr />
+   
+       <div class="center">
+          {{ basic.symbol('Moon1', 'env.location.moonphase', ' Neumond', 'icons/moon/moon1.png', 0) }}
+                    {{ basic.symbol('Moon2', 'env.location.moonphase', ' zunehmender Mond', 'icons/moon/moon2.png', 1) }}
+                    {{ basic.symbol('Moon3', 'env.location.moonphase', ' zunehmender Mond', 'icons/moon/moon3.png', 2) }}
+                    {{ basic.symbol('Moon4', 'env.location.moonphase', ' zunehmender Mond', 'icons/moon/moon4.png', 3) }}
+                    {{ basic.symbol('Moon5', 'env.location.moonphase', ' Vollmond', 'icons/moon/moon5.png', 4) }}
+                    {{ basic.symbol('Moon6', 'env.location.moonphase', ' abnehmender Mond', 'icons/moon/moon6.png', 5) }}
+                    {{ basic.symbol('Moon7', 'env.location.moonphase', ' abnehmender Mond', 'icons/moon/moon7.png', 6) }}
+                    {{ basic.symbol('Moon8', 'env.location.moonphase', ' abnehmender Mond', 'icons/moon/moon8.png', 7) }} 
+                    {{ basic.symbol('Moon9', 'env.location.moonphase', ' Neumond', 'icons/moon/moon1.png', 8) }}
+                    , Mondlicht: {{ basic.value('moonlight', 'env.location.moonlight', '%') }}
+             </div>
+
+<hr />
+	<div class="center">
+<img src="lib/weather/pics/sun_up.png" width="35"/> {{ basic.formula('Sonnenaufgang', 'env.location.sunrise', 'time') }}
+<img src="lib/weather/pics/sun_down.png" width="35"/> {{ basic.formula('sonnenuntergang', 'env.location.sunset', 'time') }}&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="lib/weather/pics/moon_up.png" width="35"/> {{ basic.formula('mondaufgang', 'env.location.moonrise', 'time') }} 
+<img src="lib/weather/pics/moon_down.png" width="35"/> {{ basic.formula('monduntergang', 'env.location.moonset', 'time') }}
+  	</div>
+    
+<hr>
+
+
+    <h3>Wettervorhersage</h3>
+
+<div class="center">	
+    {{ weather.forecastweek('weather_forecastweek') }}
+    {{ weather.mapslides('map1', 'Vorschau', 0.7) }}
+</div>
+    <br />
+    <hr />
+    <div class="mini">© tagesschau.de, Hessischer Rundfunk, Deutscher Wetterdienst</div>
+{% endblock %}
+
+

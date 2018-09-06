@@ -1,0 +1,50 @@
+/**
+ * Standard RTR mit Anzeige Stellgröße und Zwangsstellung
+ * 
+ * @param       eindeutige id für dieses widget
+ * @param       ein gad/item für die aktuelle Stellgröße
+ * @param       ein gad/item für die Ist-Temperatur
+ * @param       ein gad/item für die Soll-Temperatur
+ * @param       ein gad/item für Komfort / Standby (3x bit or 1x byte) 
+ * @param       ein gad/item für Nacht (3x bit or 1x byte)
+ * @param       ein gad/item für Frost (3x bit or 1x byte)
+ * @param       ein gad/item für den aktuellen Status der GA-Zwangsstellung ein
+ * @param       ein gad/item für den aktuellen Status der GA-Zwangsstellung aus
+ * @param       ein gad/item für einen Text (einige RTRs haben ein Text-Display), (optional)
+ * @param       Schritt für Plus/Minus Button (optional, default 0.5)                                         
+ */
+
+{% macro rtrstellzwang(id, gad_stellgroesse, gad_actual, gad_set, gad_comfort, gad_night, gad_frost, gad_zwangon, gad_zwangoff, gad_txt, step) %}
+    {% import "basic.html" as basic %}
+  
+	<div id="{{ uid(page, id) }}" data-widget="device.rtr" data-step="{{ step|default(0.5) }}"
+		class="rtr">
+        <div class="actual">
+            <div class="temp">{{ basic.float(id~'actual', gad_actual, '°' ) }}</div>
+            <div class="text">Heizt mit: {{ basic.value(id~'stellgroesse', gad_stellgroesse, '%' ) }}</div>
+        </div>
+        
+        {% if gad_set %}
+            <div class="set">
+				<a data-role="button" data-icon="minus" data-inline="true" data-iconpos="notext" class="ui-mini"></a>
+                <div class="temp">{{ basic.float(id~'set', gad_set, '°' ) }}</div>
+        		<a data-role="button" data-icon="plus" data-inline="true" data-iconpos="notext" class="ui-mini"></a>
+            </div>
+        {% endif %}
+        
+        <div class="control">
+            {% if (gad_comfort == gad_night) and (gad_night == gad_frost) %}
+				{{ basic.switch(id~'mode', gad_comfort, icon1~'user_available.png', icon0~'user_away.png', 'comfort', 'standby') }}
+	            {{ basic.switch(id~'night', gad_night, icon1~'scene_night.png', icon0~'scene_day.png', 'night', 'standby') }}
+	            {{ basic.switch(id~'frost', gad_frost, icon1~'weather_frost.png', icon0~'weather_frost.png', 'frost', 'standby') }}
+        	{% else %}
+				{{ basic.switch(id~'mode', gad_comfort, icon1~'user_available.png', icon0~'user_away.png','1','2') }}
+	            {{ basic.switch(id~'night', gad_night, icon1~'scene_night.png', icon0~'scene_day.png','3','2') }}
+	            {{ basic.switch(id~'frost', gad_frost, icon1~'weather_frost.png', icon0~'weather_frost.png','4','2') }}
+            {% endif %}
+			<div style="float:left; width: 5px; height: 48px;"></div>
+            {{ basic.symbol(id~'zwangon', gad_zwangon, '', icon1~'sani_heating_manual.png') }}
+            {{ basic.symbol(id~'zwangoff', gad_zwangoff, '', icon0~'sani_heating_manual.png', 0) }}
+        </div>
+    </div>
+{% endmacro %}

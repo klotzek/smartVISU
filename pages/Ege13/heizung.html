@@ -1,0 +1,316 @@
+
+/** * ----------------------------------------------------------------------------- * @package     smartVISU * @author      Martin Gleiß * @copyright   2012 * @license     GPL [http://www.gnu.de] * ----------------------------------------------------------------------------- * 		{{basic.switch('S1','Erdgeschoss.Wohnen.Sofa1.Schalten', icon1~'light_floor_lamp.svg', icon0~'light_floor_lamp.svg')}} Sofa Beleuchtung */ {% extends "base.html" %} {% block sidebar %} 	{%include 'rooms_menu.html' %} {% endblock %} {% block content %} <h1>
+
+{% import "Widgets/ext.html" as ext %}
+{% import "Widgets/uzsu.html" as uzsu %}
+{% import "Widgets/plot.html" as plot %}
+          
+<img class="icon"' src='{{ icon0 }}sani_heating_temp.svg'/>Heizung</h1>  
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible"  data-collapsed="false">
+      <h3>Wohnen &nbsp;&nbsp;&nbsp;&nbsp; heizt mit {{basic.float('EG.Wohnen.Heizung.stellwert', 'EG.Wohnen.Heizung.stellwert', '%')}}</h3>  
+      <table width=100%>	
+        <tr>  
+          <td align=left>           
+          {{ ext.rtr('EG.Wohnen.Heizung1', 'EG.Wohnen.Heizung.ist', 'EG.Wohnen.Heizung.soll', 'EG.Wohnen.Heizung.sollwertverschiebung', 'EG.Wohnen.Heizung.modus', 'EG.Wohnen.Heizung.stellwert', 'EG.Wohnen.Heizung.uzsu', 0.5) }}
+	  </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+      <h3>Wohnen</h3>
+      <table width=100%>
+	     <tr>
+	       <td align=left>
+
+{{ plot.multiaxis('plot_Wohnen', 
+    ['EG.Wohnen.Heizung.ist','EG.Wohnen.Heizung.soll','EG.Wohnen.Heizung.stellwert'], 
+    'avg', '1d', 'now', 
+    ['18', '18', '0'],
+    ['25', '25', '100'],
+    '',
+    ['Ist', 'Soll', 'Stellwert'], 
+    ['','', '#a00'], 
+    ['', 'stair', 'spline'],
+    ['Zeit', 'Ist', 'Soll', 'Stellwert'], 
+    '5i', 
+    [1,2,3], 
+    [0,0,1], 
+    ['','', '#a00']) }}
+
+	         </td>
+	      </tr>
+      </table>      
+
+    </div>
+  </div>
+</div>
+
+<hr>
+    
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">	
+    <h3>Kochen und Essen &nbsp;&nbsp;&nbsp;&nbsp; heizt mit {{basic.float('EG.Essen.Heizung.stellwert', 'EG.Essen.Heizung.stellwert', '%')}}</h3>  
+      <table width=100%>	
+        <tr>  
+          <td align=left>            
+          {{ ext.rtr('EG.Essen.Heizung1', 'EG.Essen.Heizung.ist', 'EG.Essen.Heizung.soll', 'EG.Essen.Heizung.sollwertverschiebung', 'EG.Essen.Heizung.modus', 'EG.Essen.Heizung.stellwert', 'EG.Essen.Heizung.uzsu', 0.5) }}
+	  </td>
+        </tr>
+      </table>
+    </div>   
+  </div>   
+</div>   
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+      <h3>Kochen &amp; Essen</h3>
+      <table width=100%>
+	<tr>
+	  <td align=left>
+
+{{ plot.multiaxis('plot_Essen', 
+    ['EG.Essen.Heizung.ist','EG.Essen.Heizung.soll','EG.Essen.Heizung.stellwert'], 
+    'avg', '1d', 'now', 
+    ['18', '18', '0'],
+    ['25', '25', '100'],
+    '',
+    ['Ist', 'Soll', 'Stellwert'], 
+    ['','', '#a00'], 
+    ['', 'stair', 'spline'],
+    ['Zeit', 'Ist', 'Soll', 'Stellwert'], 
+    '5i', 
+    [1,2,3], 
+    [0,0,1], 
+    ['','', '#a00']) }}
+
+
+	  </td>
+	</tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<hr>    
+    
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+    <h3>Duschen &nbsp;&nbsp;&nbsp;&nbsp; heizt mit {{basic.float('EG.Duschen.Heizung.stellwert', 'EG.Duschen.Heizung.stellwert', '%')}}</h3>
+      <table width=100%>
+	<tr>
+	  <td align=left>
+          {{ ext.rtr('EG.Duschen.Heizung1', 'EG.Duschen.Heizung.ist', 'EG.Duschen.Heizung.soll', 'EG.Duschen.Heizung.sollwertverschiebung', 'EG.Duschen.Heizung.modus', 'EG.Duschen.Heizung.stellwert', 'EG.Duschen.Heizung.uzsu', 0.5) }}
+
+	  </td>
+	</tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+      <h3>Duschen</h3>
+      <table width=100%>
+	     <tr>
+	       <td align=left>
+
+{{ plot.multiaxis('plot_Duschen', 
+    ['EG.Duschen.Heizung.ist','EG.Duschen.Heizung.soll','EG.Duschen.Heizung.stellwert'], 
+    'avg', '1d', 'now', 
+    ['18', '18', '0'],
+    ['22', '22', '100'],
+    '',
+    ['Ist', 'Soll', 'Stellwert'], 
+    ['','', '#a00'], 
+    ['', 'stair', 'spline'],
+    ['Zeit', 'Ist', 'Soll', 'Stellwert'], 
+    '5i', 
+    [1,2,3], 
+    [0,0,1], 
+    ['','', '#a00']) }}
+
+	         </td>
+	      </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<hr/>
+    
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+    <h3>Handtuchhalter &nbsp;&nbsp;&nbsp;&nbsp; heizt mit {{basic.float('EG.Duschen.Heizung.stellwert_hhalter_proz', 'EG.Duschen.Heizung.stellwert_hhalter_proz', '%')}}</h3>
+      <table width=100%>
+	<tr>
+	  <td align=left>
+          {{ ext.rtr('EG.Duschen.Heizung2', 'EG.Duschen.Heizung.ist', 'EG.Duschen.Heizung.soll_hhalter', 'EG.Duschen.Heizung.sollwertverschiebung_hhalter', 'EG.Duschen.Heizung.modus_hhalter', 'EG.Duschen.Heizung.stellwert_hhalter', 'EG.Duschen.Heizung.uzsu_hhalter', 0.5) }}
+
+	  </td>
+	</tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+      <h3>Handtuchhalter</h3>
+      <table width=100%>
+	<tr>
+	  <td align=left>
+
+{{ plot.multiaxis('plot_Duschen_HHalter', 
+    ['EG.Duschen.Heizung.ist','EG.Duschen.Heizung.soll_hhalter','EG.Duschen.Heizung.stellwert_hhalter'], 
+    'avg', '1d', 'now', 
+    ['18', '18', '0'],
+    ['22', '22', '100'],
+    '',
+    ['Ist', 'Soll', 'Stellwert'], 
+    ['','', '#a00'], 
+    ['', 'stair', 'spline'],
+    ['Zeit', 'Ist', 'Soll', 'Stellwert'], 
+    '5i', 
+    [1,2,3], 
+    [0,0,1], 
+    ['','', '#a00']) }}
+	  </td>		
+
+	  </td>
+	</tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+      <h3>Schlafen  &nbsp;&nbsp;&nbsp;&nbsp; heizt mit {{basic.float('EG.Schlafen.Heizung.stellwert', 'EG.Schlafen.Heizung.stellwert', '%')}}</h3>
+      <table width=100%>
+	<tr>
+	  <td align=left>
+          {{ ext.rtr('EG.Schlafen.Heizung1', 'EG.Schlafen.Heizung.ist', 'EG.Schlafen.Heizung.soll', 'EG.Schlafen.Heizung.sollwertverschiebung', 'EG.Schlafen.Heizung.modus', 'EG.Schlafen.Heizung.stellwert', 'EG.Schlafen.Heizung.uzsu', 0.5) }}
+	  </td>
+	</tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+      <h3>Schlafen</h3>
+      <table width=100%>
+	<tr>
+	  <td align=left>
+
+{{ plot.multiaxis('plot_Schlafen', 
+    ['EG.Schlafen.Heizung.ist','EG.Schlafen.Heizung.soll','EG.Schlafen.Heizung.stellwert'], 
+    'avg', '1d', 'now', 
+    ['16', '16', '0'],
+    ['20', '20', '100'],
+    '',
+    ['Ist', 'Soll', 'Stellwert'], 
+    ['','', '#a00'], 
+    ['', 'stair', 'spline'],
+    ['Zeit', 'Ist', 'Soll', 'Stellwert'], 
+    '5i', 
+    [1,2,3], 
+    [0,0,1], 
+    ['','', '#a00']) }}
+
+	  </td>
+	</tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+  <div data-role="collapsible" data-collapsed="false">
+    <h3>Ankommen &nbsp;&nbsp;&nbsp;&nbsp; heizt mit {{basic.float('EG.Ankommen.Heizung.stellwert', 'EG.Ankommen.Heizung.stellwert', '%')}}</h3>
+    <table width=100%>
+	<tr>
+	  <td align=left>
+          {{ ext.rtr('EG.Ankommen.Heizung1', 'EG.Ankommen.Heizung.ist', 'EG.Ankommen.Heizung.soll', 'EG.Ankommen.Heizung.sollwertverschiebung', 'EG.Ankommen.Heizung.modus', 'EG.Ankommen.Heizung.stellwert', 'EG.Ankommen.Heizung.uzsu', 0.5) }}
+	  </td>
+	</tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+      <h3>Ankommen</h3>
+      <table width=100%>
+	<tr>
+	  <td align=left>
+
+{{ plot.multiaxis('plot_Ankommen', 
+    ['EG.Ankommen.Heizung.ist','EG.Ankommen.Heizung.soll','EG.Ankommen.Heizung.stellwert'], 
+    'avg', '1d', 'now', 
+    ['4', '4', '0'],
+    ['10', '10', '100'],
+    '',
+    ['Ist', 'Soll', 'Stellwert'], 
+    ['','', '#a00'], 
+    ['', 'stair', 'spline'],
+    ['Zeit', 'Ist', 'Soll', 'Stellwert'], 
+    '5i', 
+    [1,2,3], 
+    [0,0,1], 
+    ['','', '#a00']) }}
+	  </td>
+	</tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+      <h3>Heizung</h3>
+      <table width=100%>
+	<tr>
+	  <td align=left>
+
+	  {{ plot.rtr('plot_Heizung_1', 'EG.Oekonomie.Temp_Heizung.ist', 'EG.Oekonomie.Temp_Heizung.soll', 'EG.Oekonomie.Temp_Heizung.status') }}		
+
+	  </td>
+	</tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+
+/** * ----------------------------------------------------------------------------- * @package     smartVISU * @author      Martin Gleiß * @copyright   2012 * @license     GPL [http://www.gnu.de] * ----------------------------------------------------------------------------- * 		{{basic.switch('S1','Erdgeschoss.Wohnen.Sofa1.Schalten', icon1~'light_floor_lamp.png', icon0~'light_floor_lamp.png')}} Sofa Beleuchtung */ {% extends "base.html" %} {% block sidebar %} 	{%include 'rooms_menu.html' %} {% endblock %} {% block content %} <h1>
+  <img class="icon"' src='{{ icon0 }}sani_heating_temp.svg'/>Heizung</h1>  
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+      <h3>Wohnen &nbsp;&nbsp;&nbsp;&nbsp; heizt mit {{basic.float('EG.Wohnen.Heizung.stellwert', 'EG.Wohnen.Heizung.stellwert', '%')}}</h3>  
+      <table width=100%>	
+        <tr>  
+          <td align=left>           
+          {{ device.rtr('EG.Wohnen.Heizung', '',    'EG.Wohnen.Heizung.ist', 'EG.Wohnen.Heizung.soll', 'EG.Wohnen.Heizung.modus', 'EG.Wohnen.Heizung.modus', 'EG.Wohnen.Heizung.modus', 'EG.Wohnen.Heizung.status') }} 
+	  </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">	<h3>Kochen und Essen &nbsp;&nbsp;&nbsp;&nbsp; heizt mit {{basic.float('EG.Essen.Heizung.stellwert', 'EG.Essen.Heizung.stellwert', '%')}}</h3>  
+      <table width=100%>	
+        <tr>  
+          <td align=left>            
+          {{ device.rtr('EG.Essen.Heizung', '', 'EG.Essen.Heizung.ist', 'EG.Essen.Heizung.soll', 'EG.Essen.Heizung.modus', 'EG.Essen.Heizung.modus', 'EG.Essen.Heizung.modus', 'EG.Essen.Heizung.status') }} 
+	  </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false"><h3>Duschen &nbsp;&nbsp;&nbsp;&nbsp; heizt mit {{basic.float('EG.Duschen.Heizung.stellwert', 'EG.Duschen.Heizung.stellwert', '%')}}</h3>
+      <table width=100%>
+	<tr>
+	  <td align=left>
+          {{ device.rtr('EG.Duschen.Heizung', '',    'EG.Duschen.Heizung.ist', 'EG.Duschen.Heizung.soll', 'EG.Duschen.Heizung.modus', 'EG.Duschen.Heizung.modus', 'EG.Duschen.Heizung.modus', 'EG.Duschen.Heizung.status') }}
+	  </td>
+	</tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="block">
+<div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+<div data-role="collapsible" data-collapsed="false">
+	<h3>Schlafen  &nbsp;&nbsp;&nbsp;&nbsp; heizt mit {{basic.float('EG.Schlafen.Heizung.stellwert', 'EG.Schlafen.Heizung.stellwert', '%')}}</h3>
+  <table width=100%>
+	<tr>
+  <td align=left>
+          {{ device.rtr('EG.Schlafen.Heizung', '',    'EG.Schlafen.Heizung.ist', 'EG.Schlafen.Heizung.soll', 'EG.Schlafen.Heizung.modus', 'EG.Schlafen.Heizung.modus', 'EG.Schlafen.Heizung.modus', 'EG.Schlafen.Heizung.status') }}
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="block">
+<div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+<div data-role="collapsible" data-collapsed="false">
+	<h3>Ankommen &nbsp;&nbsp;&nbsp;&nbsp; heizt mit {{basic.float('EG.Ankommen.Heizung.stellwert', 'EG.Ankommen.Heizung.stellwert', '%')}}</h3>
+  <table width=100%>
+	<tr>
+  <td align=left>
+            {{ device.rtr('EG.Ankommen.Heizung', '',    'EG.Ankommen.Heizung.ist', 'EG.Ankommen.Heizung.soll', 'EG.Ankommen.Heizung.modus', 'EG.Ankommen.Heizung.modus', 'EG.Ankommen.Heizung.modus', 'EG.Ankommen.Heizung.status') }}
+</td>
+</tr>
+	</table>
+</div>
+</div>
+</div>
+
+
+{% endblock %}

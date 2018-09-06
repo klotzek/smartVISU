@@ -1,0 +1,47 @@
+/**
+* -----------------------------------------------------------------------------
+* @package     smartVISU
+* @author      Martin Gleiß
+* @copyright   2012
+* @license     GPL [http://www.gnu.de]
+* -----------------------------------------------------------------------------
+*/
+
+
+{% import "status.html" as status %}
+
+<div id="menu" class="menu">
+
+	<a id="menu-rooms" class="icon1" href="index.php">
+		<img class="icon" src="{{ icon0 }}control_building_empty.svg" /></a>
+		
+	<a id="menu-rooms" class="icon1" href="index.php?page=home_info">
+		<img class="icon" src="{{ icon0 }}time_calendar.svg" /></a>
+		
+	<a id="menu-weather" class="icon1" href="index.php?page=weather_current">
+		<img class="icon" src="{{ icon0 }}weather_cloudy.svg"/></a>
+
+	<a id="menu-wp" class="icon1" href="index.php?page=stats.eta">
+		<img class="icon" src="{{ icon0 }}temp_temperature.svg"/></a>     
+
+<!--	<a id="menu-category" class="icon1" href="index.php?page=category">
+		<img class="icon" src="{{ icon0 }}time_manual_mode.svg" /></a>
+-->
+	<a id="menu-apps" class="icon1" data-ajax="false" href="index.php?page=apps">
+		<img class="icon" src="{{ icon0 }}it_net.svg" /></a>
+
+	<a id="menu-system" class="icon1" data-ajax="false" href="index.php?page=config">
+		<img class="icon" src="{{ icon0 }}edit_settings.svg" /></a>
+
+<!--	<a id="menu-alarm" class="icon1" data-ajax="false" href="index.php?page=scheune">
+-->		
+    {{ basic.symbol('EG.Oekonomie.Frostalarm0', 'EG.Oekonomie.Frostalarm', '', icon1~'secur_frost_protection.svg') }}
+    {{ basic.symbol('EG.Oekonomie.Toralarm', 'EG.Oekonomie.Toralarm', '', icon1~'fts_yard_gate_2w_open.svg') }}
+    {{ basic.float('EG.Oekonomie.Temp_Heizung', 'EG.Oekonomie.Temp_Heizung.ist', '°') }}
+
+<!--    {{ status.notify('EG.Oekonomie.Toralarm_warn', 'EG.Oekonomie.Toralarm','EG.Oekonomie.Toralarm.text', 'Tor', 'Toralarm', 'Eines der Scheunentore steht offen!', 'warning') }}
+-->    {{ status.notify('EG.Oekonomie.Frostalarm_err', 'EG.Oekonomie.Frostalarm','EG.Oekonomie.Frostalarm.text' ,'Frost', 'Frostalarm', 'Heizungsraum k&auml;lter als +5 grad!', 'warning') }}
+<!--</a>
+-->
+
+</div>

@@ -1,0 +1,31 @@
+/**
+ * -----------------------------------------------------------------------------
+ * @package     smartVISU
+ * @author      Martin Gleiß
+ * @copyright   2012
+ * @license     GPL <http://www.gnu.de>
+ * ----------------------------------------------------------------------------- 
+
+ *  
+ **/ 
+
+{% extends "base.html" %}
+
+{% block sidebar %}
+  	{% include 'home_info_menu.html' %} 
+{% endblock %}
+
+{% block content %}
+    
+
+ 	{% import "calendar.html" as calendar %}
+	{{ calendar.list('calendarlist', 'Kalender Eduard-Ege-13',3)}}  
+  
+  <hr>
+  
+ 	{% import "phone.html" as phone %}
+  {{ phone.list('phonelist', 'Anrufe', 5) }}
+
+
+
+{% endblock %}

@@ -1,0 +1,99 @@
+/** * ----------------------------------------------------------------------------- * @package     smartVISU * @author      Martin Gleiß * @copyright   2012 * @license     GPL [http://www.gnu.de] * ----------------------------------------------------------------------------- * 		{{basic.switch('S1','Erdgeschoss.Wohnen.Sofa1.Schalten', icon1~'light_floor_lamp.png', icon0~'light_floor_lamp.png')}} Sofa Beleuchtung */ {% extends "base.html" %} {% block sidebar %} 	{%include 'rooms_menu.html' %} {% endblock %} {% block content %} <h1>
+  <img class="icon"' src='{{ icon0 }}scene_livingroom.png'/>Wohnen</h1>  
+<table width=100%>	
+  <tr>  
+    <td align=middle>Szenen     
+      <span data-role="controlgroup" data-type="horizontal">       
+      {{ basic.button('SZ1', 'EG.Wohnen.Szene_Ankommen', 'Ankommen', 'icons/ws/status_available.png', '1','mini') }}     
+      {{ basic.button('SZ2', 'EG.Wohnen.Szene_Party', '', 'icons/ws/scene_party.png', '1', 'mini') }}     
+      {{ basic.button('SZ3', 'EG.Wohnen.Szene_Essen', '', 'icons/ws/scene_dinner.png', '1','mini') }}     
+      {{ basic.button('SZ4', 'EG.Wohnen.Szene_TV', '', 'icons/ws/it_television.png', '1','mini') }}
+      {{ basic.button('SZ5', 'EG.Schlafen.Szene_Schlafen', '', 'icons/ws/status_away_1.png', '1','mini') }} 	
+      </span>  </td>  
+  </tr>	
+</table>
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">	<h3>Beleuchtung</h3>  
+      <table width=100%>	
+        <tr>  
+          <td align=left>		{{ device.dimmer('EG.Wohnen.Sofa1','Sofa Beleuchtung', 'EG.Wohnen.Sofa1.Schalten', 'EG.Wohnen.Sofa1.Dimmen')}} 	</td>  
+        </tr>  
+        <tr>	
+          <td align=left>		{{ device.dimmer('EG.Wohnen.Sofa2','Sofa Beleuchtung', 'EG.Wohnen.Sofa2.Schalten', 'EG.Wohnen.Sofa2.Dimmen')}} 	</td>  
+        </tr>  
+        <tr>	
+          <td align=left>		{{ device.dimmer('EG.Wohnen.Multimedia','Multimedia Beleuchtung', 'EG.Wohnen.Multimedia.Schalten', 'EG.Wohnen.Multimedia.Dimmen')}} 	</td>  
+        </tr>	
+      </table>
+    </div>
+  </div>
+  <!-- </div> -->
+<!-- <div class="block"> -->
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">	<h3>Versorgung</h3>  
+      <table width=100%>	
+        <tr>  
+          <td align=left>		{{basic.switch('L1','EG.Wohnen.Linie1.Schalten', icon1~'message_socket_on_off.png', icon0~'message_socket_on_off.png')}} Steckdosen Multimedia 	</td>  
+        </tr>	
+        <tr>  
+          <td align=left>		{{basic.switch('L2','EG.Wohnen.Linie2.Schalten', icon1~'message_socket_on_off.png', icon0~'message_socket_on_off.png')}} Steckdosen Wohnzimmer 	</td>  
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">	<h3>Heizung</h3>  
+      <table width=100%>	
+        <tr>  
+          <td align=left>           
+<!--          {% import "widget_ext.html" as ext %}             
+          {{ ext.rtr('EG.Wohnen.Heizung', 'Heizung Wohnen', 'EG.Wohnen.Heizung.ist', 'EG.Wohnen.Heizung.soll', 'EG.Wohnen.Heizung.komfort', 'EG.Wohnen.Heizung.nacht', 'EG.Wohnen.Heizung.frostschutz', 'EG.Wohnen.Heizung.stellwert', 'heizt mit') }} </td>
+-->
+          {{ device.rtr('EG.Wohnen.Heizung', '',    'EG.Wohnen.Heizung.ist', 'EG.Wohnen.Heizung.soll', 'EG.Wohnen.Heizung.modus', 'EG.Wohnen.Heizung.modus', 'EG.Wohnen.Heizung.modus', 'EG.Wohnen.Heizung.status') }} </td>
+<!--
+-->
+
+<!--      {{ device.rtr(id,                   txt,    gad_actual,              gad_set,                  gad_comfort,                gad_night,                 gad_frost,                       gad_state,                     gad_txt,     step) }}
+{{ device.rtr('rtr1', 'Heating', 'bath_rtr_act', 'bath_rtr_set', 'bath_rtr_comfort', 'bath_rtr_night', 'bath_rtr_frost', 'bath_rtr_state', 'bath_rtr_text') }} 
+{{ device.rtr('rtr2', 'Heating', 'bath_rtr_act', 'bath_rtr_set', 'bath_rtr_mode', 'bath_rtr_mode', 'bath_rtr_mode', 'bath_rtr_state', 'bath_rtr_text') }}
+-->
+        </tr>
+      </table>
+    </div>
+  </div>
+<!-- </div> -->
+
+<!--  <div class="block"> -->
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">	<h3>Klappl&auml;den</h3>  
+      <table width=100%>	
+        <tr>  
+          <td align=left>
+            <span data-role="controlgroup" data-type="horizontal">  
+            {{ basic.button('KL1a', 'EG.Wohnen.Laden1.Auf', 'Auf', 'forward', '0', 'mini') }} 
+            {{ basic.button('KL1z', 'EG.Wohnen.Laden1.Zu', 'Zu', 'back', '0', 'mini') }} 
+            </span>Fenster Stra&szlig;e </td>
+           </tr> 
+           <tr>           
+            <td align=left>
+            {{ basic.symbol('s1', 'EG.Wohnen.Fenster_Strasse', 'Fenster geschlossen', icon1~'fts_window_1w.svg',0) }}
+            {{ basic.symbol('s1', 'EG.Wohnen.Fenster_Strasse', 'Fenster offen', icon1~'fts_window_1w_open.svg') }}
+
+            </td>
+        </tr>	
+        <tr>  
+          <td align=left>
+            <span data-role="controlgroup" data-type="horizontal">  
+            {{ basic.button('KL2a', 'EG.Wohnen.Laden2.Auf', 'Auf', 'forward', '0', 'mini') }} 
+            {{ basic.button('KL2z', 'EG.Wohnen.Laden2.Zu', 'Zu', 'back', '0', 'mini') }} 
+            </span>Fenster Berthold </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

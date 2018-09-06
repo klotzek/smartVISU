@@ -50,9 +50,13 @@
 	<link rel="stylesheet" type="text/css" href="designs/{{ config_design }}.min.css" />
 	<link rel="stylesheet" type="text/css" href="pages/base/base.css" />
 
+	{% if isfile('widgets/sh_widgets/widget_sonos.js') %}
+		<script type="text/javascript" src="widgets/sh_widgets/widget_sonos.js"></script>{% endif %}
 	{% if isfile('pages/'~config_pages~'/visu.js') %}
 		<script type="text/javascript" src="pages/{{ config_pages }}/visu.js"></script>{% endif %}
 
+	{% if isfile('widgets/sh_widgets/widget_sonos.css') %}
+		<link rel="stylesheet" type="text/css" href="widgets/sh_widgets/widget_sonos.css" />{% endif %}
 	{% if isfile('pages/'~config_pages~'/visu.css') %}
 		<link rel="stylesheet" type="text/css" href="pages/{{ config_pages }}/visu.css" />{% endif %}
 
@@ -62,6 +66,7 @@
 	{% import "basic.html" as basic %}
 	{% import "device.html" as device %}
 	{% import "plot.html" as plot %}
+	{% import "sh_widgets/widget_sonos.html" as sonos %}
 </head>
 
 

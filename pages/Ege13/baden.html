@@ -1,0 +1,157 @@
+/**
+* -----------------------------------------------------------------------------
+* @package     smartVISU
+* @author      Martin Gleiß
+* @copyright   2012
+* @license     GPL [http://www.gnu.de]
+* -----------------------------------------------------------------------------
+* 		{{basic.switch('S1','Erdgeschoss.Duschen.Sofa1.Schalten', icon1~'light_floor_lamp.svg', icon0~'light_floor_lamp.svg')}} Sofa Beleuchtung
+*/
+
+
+{% extends "base.html" %}
+{% import "Widgets/ext.html" as ext %}
+{% import "Widgets/uzsu.html" as uzsu %}
+{% import "Widgets/widget_sonos.html" as sonos %}
+
+
+{% block sidebar %}
+{%include 'rooms_menu.html' %}
+{% endblock %}
+
+{% block content %}
+
+<h1>
+  <img class="icon"' src='{{ icon0 }}scene_bath.svg'/>
+Baden
+</h1>
+
+<table width=100%>	
+  <tr>  
+    <td align=middle>Musik: 
+<!-- {{ basic.value('MySonos.Duschen.player_name', 'MySonos.Duschen.player_name') }} -->
+{{ basic.symbol('s2', 'MySonos.Duschen.play', '', 'audio_play.svg', '', '', 'icon1') }}
+{{ basic.symbol('s3', 'MySonos.Duschen.play', '', 'audio_pause.svg', 0) }}
+ 
+{{ basic.value('MySonos.Duschen.radio_station', 'MySonos.Duschen.radio_station') }}
+
+{{ basic.value('MySonos.Duschen.track_title', 'MySonos.Duschen.track_title') }}
+<b>{{ basic.value('MySonos.Duschen.track_artist', 'MySonos.Duschen.track_artist') }}</b>
+{{ basic.value('MySonos.Duschen.track_album', 'MySonos.Duschen.track_album') }}
+
+{% if ('radio' in 'MySonos.Duschen.streamtype') %} irgendein Text {% endif %}
+
+<!--{{ basic.value('MySonos.Duschen.streamtype', 'MySonos.Duschen.streamtype') }} -->
+
+    </td>  
+  </tr>	
+</table>
+
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+    <h3>Beleuchtung</h3>
+    <table width=100%>
+      <tr>
+	<td align=left>
+ 		{{basic.switch('EG.Duschen.Szene_schalten','EG.Duschen.Szene_schalten')}} Alle Lichter im Bad
+    {{ basic.switch('Sperre', 'EG.Duschen.Licht.Sperren', 'control_cancel.svg', 'control_ok.svg', '', '', '', '#25ea4e', '#4176a9' ) }} Nacht-Sperre
+    {{ basic.text('text_Sperre', 'EG.Duschen.Licht.Sperren', 'aktiv', 'inaktiv') }}
+
+    
+	</td>
+      </tr>
+      <tr>
+	<td align=left>
+ 		{{basic.switch('EG.Duschen.Licht.Schalten','EG.Duschen.Licht.Schalten', icon1~'light_downlight.svg', icon0~'light_downlight.svg')}} Beleuchtung Bad
+ 		{{basic.switch('EG.Duschen.Licht.Melder_Sperren','EG.Duschen.Licht.Melder_Sperren', icon1~'control_cancel.svg', icon0~'control_ok.svg', '', '', '', '#25ea4e', '#4176a9')}} Bewegungsmelder 
+    {{ basic.text('text_Melder', 'EG.Duschen.Licht.Melder_Sperren', 'gesperrt', 'entsperrt') }}
+    {{ uzsu.uzsu_icon('EG.Duschen.Licht.uzsu_Bewegungsmelder', 'EG.Duschen.Licht.uzsu_Bewegungsmelder', 'Bewegungsmelder ausschalten', '', '', '', '', 'Gesperrt, Entsperrt') }}	
+	</td>
+      </tr>
+      <tr>
+	<td align=left>
+ 		{{basic.switch('EG.Duschen.Duschlichtlein.Schalten','EG.Duschen.Duschlichtlein.Schalten', icon1~'light_fountain_indoor.svg', icon0~'light_fountain_indoor.svg')}} Dusche
+	</td>
+      </tr>
+      <tr>
+	<td align=left>
+ 		{{basic.switch('EG.Duschen.Waschtisch.Schalten','EG.Duschen.Waschtisch.Schalten', icon1~'light_mirror.svg', icon0~'light_mirror.svg')}} Waschtisch
+	</td>
+      </tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+     <h3>Heizung, heizt mit {{basic.float('EG.Duschen.Heizung.stellwert', 'EG.Duschen.Heizung.stellwert', '%')}} &nbsp; Handtuchhalter, heizt mit {{basic.float('EG.Duschen.Heizung.stellwert_hhalter_proz', 'EG.Duschen.Heizung.stellwert_hhalter_proz', '%')}}</h3>
+     <table width=100%>
+      <tr>
+	     <td align=left>
+
+            {{ ext.rtr('EG.Duschen.Heizung1', 'EG.Duschen.Heizung.ist', 'EG.Duschen.Heizung.soll', 'EG.Duschen.Heizung.sollwertverschiebung', 'EG.Duschen.Heizung.modus', 'EG.Duschen.Heizung.stellwert', 'EG.Duschen.Heizung.uzsu', 0.5) }}
+            
+	      </td>
+      </tr>
+      <tr>
+
+        <td align=center>
+       		{{basic.switch('EG.Duschen.Heizung.boost_hhalter','EG.Duschen.Heizung.boost_hhalter', icon1~'sani_heating_manual.svg', icon0~'sani_heating_manual.svg')}} 
+          {{ basic.text('text1', 'EG.Duschen.Heizung.boost_hhalter', 'Handtuchhalter ein f&uuml;r 15 min', 'Boost Handtuchhalter') }}
+          {{ uzsu.uzsu_icon('EG.Duschen.Heizung.uzsu_hhalter_zwang', 'EG.Duschen.Heizung.uzsu_hhalter_zwang', 'Handtuchhalter volle Pulle', '', '', '', '', 'Ein, Aus') }}	
+          
+        </td>
+      </tr>
+      <tr><td style="height: 35px;"></td></tr>
+    </table>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">
+    <h3>Versorgung</h3>
+    <table width=100%>
+      <tr>
+	<td align=left>
+		{{basic.switch('L1','EG.Duschen.Linie_Waschtisch.Schalten', icon1~'message_socket_on_off.svg', icon0~'message_socket_on_off.svg')}} Steckdosen Waschtisch
+	</td>
+      </tr>
+      <tr>
+	<td align=left>
+		{{basic.switch('L2','EG.Duschen.Linie_Waschmaschine.Schalten', icon1~'message_socket_on_off.svg', icon0~'message_socket_on_off.svg')}} Steckdosen Waschmaschine
+	</td>
+      </tr>
+
+      </table>
+     </div>
+   </div>
+</div>
+
+
+<div class="block">
+  <div class="set-2" data-role="collapsible-set" data-theme="c" data-content-theme="a" data-mini="true">
+    <div data-role="collapsible" data-collapsed="false">	<h3>Sonos</h3>  
+
+        {{ sonos.player('sonos_wohnzimmer', 'MySonos.Duschen') }}
+
+    </div>
+  </div>
+</div>  
+
+
+
+
+
+
+{% endblock %}
+
